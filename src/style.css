@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer {
+    body {
+        @apply bg-slate-900;
+    }
+}
+
+.button--primary {
+    @apply px-4 py-2 text-sm font-medium text-white bg-blue-500 rounded-lg;
+}
+
+.button--secondary {
+    @apply px-4 py-2 text-sm font-medium text-white bg-gray-500 rounded-lg;
+}
+
+.button--success {
+    @apply px-4 py-2 text-sm font-medium text-white bg-green-500 rounded-lg;
+}
+
+.button--disabled {
+    @apply opacity-50 cursor-default;
+}
+
+.button--failed {
+    @apply px-4 py-2 text-sm font-medium text-white bg-red-500 rounded-lg;
+}
