@@ -51,7 +51,7 @@
 </template>
 
 <script setup lang="ts">
-import { Check, Frown, Loader, LoaderCircle } from "lucide-vue-next";
+import { Check, Frown, LoaderCircle } from "lucide-vue-next";
 
 defineProps({
     id: {
