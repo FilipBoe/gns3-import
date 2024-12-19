@@ -3,7 +3,7 @@ name: Build and Release
 on: push
 
 permissions:
-  contents: write # This is required for creating releases
+  contents: write
 
 jobs:
   build-and-release:
@@ -25,13 +25,19 @@ jobs:
       - name: Build
         run: npm run build
       
+      - name: Generate release tag
+        id: tag
+        run: |
+          sha=$(git rev-parse --short HEAD)
+          timestamp=$(date +%Y%m%d_%H%M%S)
+          echo "release_tag=release-${timestamp}-${sha}" >> $GITHUB_OUTPUT
+      
       - name: Create Release
-        id: create_release
         uses: softprops/action-gh-release@v1
         with:
           files: |
             dist/**
-          name: Release ${{ github.sha }}
-          tag_name: ${{ github.sha }}
+          name: Release ${{ steps.tag.outputs.release_tag }}
+          tag_name: ${{ steps.tag.outputs.release_tag }}
           draft: false
           prerelease: false
