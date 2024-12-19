@@ -32,11 +32,15 @@ jobs:
           timestamp=$(date +%Y%m%d_%H%M%S)
           echo "release_tag=release-${timestamp}-${sha}" >> $GITHUB_OUTPUT
       
+      - name: Zip dist folder
+        run: |
+          cd dist
+          zip -r ../dist.zip .
+        
       - name: Create Release
         uses: softprops/action-gh-release@v1
         with:
-          files: |
-            dist/**
+          files: dist.zip
           name: Release ${{ steps.tag.outputs.release_tag }}
           tag_name: ${{ steps.tag.outputs.release_tag }}
           draft: false
