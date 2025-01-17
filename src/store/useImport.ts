@@ -265,14 +265,16 @@ export const useImportStore = defineStore("import", () => {
         const reader = new FileReader();
 
         reader.onload = (e) => {
-            const content = e.target?.result as string;
+            let content = e.target?.result as string;
+
+            content = content.replaceAll('"', "");
 
             const ofComas = content.match(/,/g)?.length ?? 0;
             const ofSemicolons = content.match(/;/g)?.length ?? 0;
 
             const splitSymbol = ofComas > ofSemicolons ? "," : ";";
 
-            const rows: string[] = content.split("\n");
+            const rows: string[] = content.split("\n").filter((row) => row);
 
             // check if format matches
             const headerRow = rows[0].replace("\r", "").split(splitSymbol);
