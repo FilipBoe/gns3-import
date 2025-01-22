@@ -13,7 +13,7 @@ import {
     ResponseError,
 } from "../types";
 
-const baseUrl = "https://gns3.pleskdev.at/api";
+const baseUrl = "http://gns3.pleskdev.at/api";
 
 function getCookie(cname: string) {
     let name = cname + "=";
