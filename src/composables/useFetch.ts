@@ -13,7 +13,7 @@ import {
     ResponseError,
 } from "../types";
 
-const baseUrl = "http://gns3.pleskdev.at/api";
+const baseUrl = "/api";
 
 function getCookie(cname: string) {
     let name = cname + "=";
@@ -101,11 +101,12 @@ export function useFetch() {
         }
 
         const expires = new Date();
-        expires.setTime(expires.getTime() + 12 * 60 * 60 * 1000); // 12 hours
+        expires.setTime(expires.getTime() + 24 * 60 * 60 * 1000); // 24 hours
         document.cookie = `access_token=${
             data.access_token
         }; expires=${expires.toUTCString()}; path=/`;
-        authToken.value = data.access_token;
+
+        window.location.reload();
 
         return [data, null];
     }
